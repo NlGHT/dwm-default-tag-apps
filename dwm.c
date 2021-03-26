@@ -271,8 +271,8 @@ static Drw *drw;
 static Monitor *mons, *selmon;
 static Window root, wmcheckwin;
 
-static int lastchosentag[32];
-static int previouschosentag[32];
+static int lastchosentag[8];
+static int previouschosentag[8];
 
 /* configuration, allows nested code to access above variables */
 #include "config.h"
