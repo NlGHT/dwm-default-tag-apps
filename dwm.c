@@ -165,6 +165,7 @@ static void drawbar(Monitor *m);
 static void drawbars(void);
 static void enternotify(XEvent *e);
 static void expose(XEvent *e);
+static void eagerspawndefault();
 static void focus(Client *c);
 static void focusin(XEvent *e);
 static void focusmon(const Arg *arg);
@@ -784,6 +785,19 @@ expose(XEvent *e)
 
 	if (ev->count == 0 && (m = wintomon(ev->window)))
 		drawbar(m);
+}
+
+void
+eagerspawndefault(const Arg *arg)
+{
+    Client *c = NULL;
+    for (c = selmon->stack; c && !ISVISIBLE(c); c = c->snext);
+    if (!c) {
+        spawndefault();
+		fputs("!c\n", stderr);
+    } else {
+		fputs("c\n", stderr);
+    }
 }
 
 void
@@ -2081,6 +2095,7 @@ view(const Arg *arg)
 		selmon->tagset[selmon->seltags] = arg->ui & TAGMASK;
 	focus(NULL);
 	arrange(selmon);
+    eagerspawndefault(arg);
 }
 
 Client *
