@@ -794,9 +794,6 @@ eagerspawndefault(const Arg *arg)
     for (c = selmon->stack; c && !ISVISIBLE(c); c = c->snext);
     if (!c) {
         spawndefault();
-		fputs("!c\n", stderr);
-    } else {
-		fputs("c\n", stderr);
     }
 }
 
@@ -2095,7 +2092,8 @@ view(const Arg *arg)
 		selmon->tagset[selmon->seltags] = arg->ui & TAGMASK;
 	focus(NULL);
 	arrange(selmon);
-    eagerspawndefault(arg);
+    if (spawnonviewchange)
+        eagerspawndefault(arg);
 }
 
 Client *
