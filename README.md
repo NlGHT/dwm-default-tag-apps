@@ -18,6 +18,8 @@ The example keyboard shortcut included is `Mod+s` but of course feel free to cha
 
 Currently multi-monitor is supported up to 8.  You can change this by changing the size of `lastchosentag[8]` and `previouschosentag[8]` in `dwm.c`.
 
+Additionally there is now support for instantaneously spawning a new app if there is nothing open on the given tag being switched to.  This behaviour is configured by the variable `spawnonviewchange` located at the top of `config.h`/`config.def.h`.
+
 You can quickly try out the patch by compiling with `sudo make install` in the project directory.
 
 Download
